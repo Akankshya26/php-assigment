@@ -1,0 +1,69 @@
+body {
+    background-image: url('1.webp');
+}
+
+.form__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 5px;
+    padding: 5px 20px;
+    text-align: center;
+
+}
+
+form {
+    width: 100vh;
+}
+
+table {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-top: 100px;
+    background-color: rgb(192, 242, 242);
+    text-align: center;
+    padding: 10px 20px;
+    width: 100%;
+    height: 30px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: auto;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+}
+
+table tr {
+    min-width: 40%;
+}
+
+table tr td {
+    padding: 5px 20px;
+    width: 50%;
+}
+
+button {
+    background-color: rgb(58, 156, 169);
+    border-width: 2px;
+    width: 20%;
+    border-radius: 25px;
+    padding: 5px;
+}
