@@ -17,27 +17,86 @@ include 'h1.php';
     <div align="center">
         <h1> CITY DETAILS</h1>
     </div>
-    <form method="POST" action="#">
+    <?php
+    $s_idErr  = "";  
+    $s_id = "";  
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {  
+       
+        //s_id validation
+            if (empty($_POST["s_id"])) {  
+                 $s_idErr = "input is required";  
+            } else {  
+                $s_id = input_data($_POST["s_id"]);  
+                    // check if name only contains letters and whitespace  
+                    if (!preg_match("/^[0-9 ]*$/",$s_id)) {  
+                        $s_idErr = "Only numbers and white space are allowed";  
+                    }  
+            } 
+        } 
+        //city name validation
+        $cnameErr  = "";  
+        $cname= "";  
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {  
+       
+
+                if (empty($_POST["cname"])) {  
+                     $cnameErr = "input is required";  
+                } else {  
+                    $cname = input_data($_POST["cname"]);  
+                        // check if name only contains letters and whitespace  
+                        if (!preg_match("/^[a-zA-Z ]*$/",$cname)) {  
+                            $cnameErr = "Only alphabets and white space are allowed";  
+                        }  
+                } 
+            } 
+            //pincode validation
+            $pincodeErr  = "";  
+            $pincode= "";  
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {  
+           
+    
+                    if (empty($_POST["pincode"])) {  
+                         $pincodeErr = "input is required";  
+                    } else {  
+                        $pincode = input_data($_POST["pincode"]);  
+                            // check if name only contains letters and whitespace  
+                            if (!preg_match("/^[0-9 ]*$/",$pincode)) {  
+                                $pincodeErr = "Only Numbers and white space are allowed";  
+                            }  
+                    } 
+                } 
+
+        
+    function input_data($data){
+        $data = trim($data);  
+        $data = stripslashes($data);  
+        $data = htmlspecialchars($data);  
+          return $data;  
+        }          
+    ?>
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <table border="1" cellspacing="0" align="center">
 
 
-            <tr>
+            <!-- <tr>
                 <td> <b> Enter id</b> </td>
                 <td>
                     <input type="text"  name=id required/>
-                </td>
+                </td> -->
             </tr>
             <tr>
-                <td> <b> state_id </b> </td>
-                <td> <input type="text"  name="s_id" required> </td>
+                <td> <b> state_id </b></td>
+                <td> <input type="text"  name="s_id"> 
+                <center> <span class="error" style="color:red";>* <?php echo $s_idErr; ?> </span></center> </td>
             </tr>
             <tr>
                 <td> <b> City Name </b> </td>
-                <td> <input type="text"  name="cname" required> </td>
+                <td> <input type="text"  name="cname"> 
+                <center> <span class="error" style="color:red";>* <?php echo $cnameErr; ?> </span></center> </td>
             </tr>
             <tr>
                 <td> <b> Pincode </b> </td>
-                <td> <input type="text"  name="pincode" required> </td>
+                <td> <input type="text"  name="pincode"> <center> <span class="error" style="color:red";>* <?php echo $pincodeErr; ?> </span></center> </td>
             </tr>
 
 
@@ -52,6 +111,7 @@ include 'h1.php';
 <?php
 if(isset($_POST['insert']))
  {
+   if($s_idErr =="" &&  $cnameErr==""  &&  $pincodeErr=="" ){
     $s_id=$_POST['s_id'];
     $cname=$_POST['cname'];
     $pincode=$_POST['pincode'];
@@ -66,6 +126,7 @@ if(isset($_POST['insert']))
      }
   
  }
+}
 ?>
 
 <table border="1">

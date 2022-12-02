@@ -1,3 +1,4 @@
+<!-- include connection page -->
 <?php
 include("connect.php");
 error_reporting(0);
@@ -6,6 +7,7 @@ $query="delete from city where id='$id'";
 $data=mysqli_query($con,$query);
 if($data)
 {
+    // redirect to city pade after deletion
     header("location:city.php");
     echo "<font color='green'> record deleted from database";
 } 

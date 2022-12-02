@@ -20,7 +20,30 @@
     <div class="main" align="center">
         <h1> STATE DETAILS</h1>
     </div>
-    <form method="POST">
+    <?php
+    $snameErr  = "";  
+    $sname  = "";  
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {  
+       
+        //String Validation  
+            if (empty($_POST["sname"])) {  
+                 $snameErr = "Name is required";  
+            } else {  
+                $sname = input_data($_POST["sname"]);  
+                    // check if name only contains letters and whitespace  
+                    if (!preg_match("/^[a-zA-Z ]*$/",$sname)) {  
+                        $snameErr = "Only alphabets and white space are allowed";  
+                    }  
+            } 
+        } 
+        function input_data($data) {  
+            $data = trim($data);  
+            $data = stripslashes($data);  
+            $data = htmlspecialchars($data);  
+          return $data;  
+        }    
+        ?>
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <table border="1" cellspacing="0" align="center">
             <tr>
                 <td> <b> state_id </b> </td>
@@ -28,7 +51,7 @@
             </tr>
             <tr>
                 <td> <b> State Name </b> </td>
-                <td> <input type="text" name="sname" id="sname" value="<?php echo $fetch['sname']?>"> </td>
+                <td> <input type="text" name="sname" id="sname" value="<?php echo $fetch['sname']?>">  <center> <span class="error" style="color:red";>* <?php echo $snameErr; ?> </span></center></td>
             </tr>
 
             <tr>
@@ -43,6 +66,7 @@
 <?php
 if(isset($_POST['update']))
  {
+    if($snameErr == "" ) {  
     $id=$_POST['id'];
     $sname=$_POST['sname'];
      $query="update state set sname='$sname' where id=$id";
@@ -55,6 +79,7 @@ if(isset($_POST['update']))
                 echo "not okay"; 
             }
  }
+}
 ?>
 
 

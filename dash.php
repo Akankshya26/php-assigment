@@ -10,8 +10,9 @@
 </head>
 
 <body>
-
+<!-- header of dashbord -->
     <h2>Welcome Admin!</h2>
+    <!-- create links of pages to redirect on that perticular page   -->
     <ul>
         <li><a href="state.php">State</a></li>
         <li><a href="city.php">City</a></li>

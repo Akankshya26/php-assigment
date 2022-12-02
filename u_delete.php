@@ -7,7 +7,6 @@ $data=mysqli_query($con,$query);
 if($data)
 {
     // redirect to user pade after updation
-    
     header("location:user.php");
     echo "<font color='green'> record deleted from database";
 } 
